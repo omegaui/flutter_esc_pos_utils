@@ -25,15 +25,7 @@ class Generator {
   int spaceBetweenRows;
 
   // ************************ Internal helpers ************************
-  int _getMaxCharsPerLine(PosFontType? font) {
-    if (_paperSize == PaperSize.mm58) {
-      return (font == null || font == PosFontType.fontA) ? 32 : 42;
-    } else if (_paperSize == PaperSize.mm72) {
-      return (font == null || font == PosFontType.fontA) ? 42 : 56;
-    } else {
-      return (font == null || font == PosFontType.fontA) ? 48 : 64;
-    }
-  }
+  int _getMaxCharsPerLine(PosFontType? font) => _paperSize.maxCharsPerLine(font);
 
   // charWidth = default width * text size multiplier
   double _getCharWidth(PosStyles styles, {int? maxCharsPerLine}) {
@@ -599,6 +591,8 @@ class Generator {
         size = 375 ~/ 2;
       } else if (_paperSize == PaperSize.mm72) {
         size = 503 ~/ 2;
+      } else if (_paperSize == PaperSize.mm112) {
+        size = 832 ~/ 2;
       }
 
       image =

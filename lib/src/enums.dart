@@ -34,11 +34,41 @@ class PaperSize {
   static const mm80 = PaperSize._internal(2);
   static const mm72 = PaperSize._internal(3);
 
-  int get width => value == PaperSize.mm58.value
-      ? 372
-      : value == PaperSize.mm72.value
-          ? 503
-          : 558;
+  /// 4 inch printers: 112 mm paper roll, 104 mm (832 dots) printable area.
+  static const mm112 = PaperSize._internal(4);
+
+  /// Alias of [mm112], for printers advertised as "4 inch".
+  static const inch4 = mm112;
+
+  /// Printable width, in dots (203 dpi).
+  int get width {
+    switch (value) {
+      case 1:
+        return 372;
+      case 3:
+        return 503;
+      case 4:
+        // 69 chars * 12 dots (font A) == 92 chars * 9 dots (font B).
+        return 828;
+      default:
+        return 558;
+    }
+  }
+
+  /// Maximum number of characters per line for the given [font].
+  int maxCharsPerLine(PosFontType? font) {
+    final bool isFontA = font == null || font == PosFontType.fontA;
+    switch (value) {
+      case 1:
+        return isFontA ? 32 : 42;
+      case 3:
+        return isFontA ? 42 : 56;
+      case 4:
+        return isFontA ? 69 : 92;
+      default:
+        return isFontA ? 48 : 64;
+    }
+  }
 }
 
 class PosBeepDuration {

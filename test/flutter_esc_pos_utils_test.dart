@@ -179,6 +179,30 @@ void main() {
     test('mm80 width is 558', () {
       expect(PaperSize.mm80.width, 558);
     });
+
+    test('mm112 (4 inch) width is 828', () {
+      expect(PaperSize.mm112.width, 828);
+    });
+
+    test('inch4 is an alias of mm112', () {
+      expect(PaperSize.inch4, PaperSize.mm112);
+      expect(PaperSize.inch4.width, 828);
+    });
+
+    test('maxCharsPerLine matches the paper size', () {
+      expect(PaperSize.mm58.maxCharsPerLine(PosFontType.fontA), 32);
+      expect(PaperSize.mm58.maxCharsPerLine(PosFontType.fontB), 42);
+      expect(PaperSize.mm72.maxCharsPerLine(PosFontType.fontA), 42);
+      expect(PaperSize.mm72.maxCharsPerLine(PosFontType.fontB), 56);
+      expect(PaperSize.mm80.maxCharsPerLine(PosFontType.fontA), 48);
+      expect(PaperSize.mm80.maxCharsPerLine(PosFontType.fontB), 64);
+      expect(PaperSize.mm112.maxCharsPerLine(PosFontType.fontA), 69);
+      expect(PaperSize.mm112.maxCharsPerLine(PosFontType.fontB), 92);
+    });
+
+    test('maxCharsPerLine defaults to font A when font is null', () {
+      expect(PaperSize.mm112.maxCharsPerLine(null), 69);
+    });
   });
 
   // ==================== PosBeepDuration Tests ====================

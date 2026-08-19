@@ -1,3 +1,7 @@
+## Unreleased
+
+* Added 4 inch (112mm) paper size support: `PaperSize.mm112` / `PaperSize.inch4`
+
 ## 1.0.1
 
 * Minor bug fixes

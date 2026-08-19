@@ -20,8 +20,25 @@ This is the "base" library that used for:
 - Paper cut (partial, full)
 - Beeping (with different duration)
 - Paper feed, reverse feed
+- Paper sizes: 58mm, 72mm, 80mm and 4 inch / 112mm
 
 **Note**: Your printer may not support some of the presented features (some styles, partial/full paper cutting, reverse feed, barcodes...).
+
+## Paper Sizes
+
+Pass the roll size of your printer to the `Generator`:
+
+| `PaperSize` | Paper roll | Printable width | Chars/line (font A) | Chars/line (font B) |
+| --- | --- | --- | --- | --- |
+| `PaperSize.mm58` | 58 mm | 372 dots | 32 | 42 |
+| `PaperSize.mm72` | 72 mm | 503 dots | 42 | 56 |
+| `PaperSize.mm80` | 80 mm | 558 dots | 48 | 64 |
+| `PaperSize.mm112` (a.k.a. `PaperSize.inch4`) | 112 mm (4 inch) | 828 dots | 69 | 92 |
+
+```dart
+// 4 inch printer
+final generator = Generator(PaperSize.mm112, profile);
+```
 
 ## Generate a Ticket
 
